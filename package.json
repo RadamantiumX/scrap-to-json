@@ -1,8 +1,9 @@
 {
-  "name": "scrap-to-json",
+  "name": "@matrix-forge/scrap-to-json",
   "version": "0.0.1",
   "description": "Only for complements",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types":"dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "semantic-release": "semantic-release"
