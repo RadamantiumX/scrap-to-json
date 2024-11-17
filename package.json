@@ -1,0 +1,33 @@
+{
+  "name": "@addons/scrap-to-json",
+  "version": "0.0.0-development",
+  "description": "Only for complements",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "semantic-release": "semantic-release"
+  },
+  "keywords": [],
+  "author": "Radamantium",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RadamantiumX/scrap-to-json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "semantic-release": "^24.2.0",
+    "typescript": "^5.6.3"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/RadamantiumX/scrap-to-json"
+  },
+  "homepage": "https://github.com/RadamantiumX/scrap-to-json"
+}
