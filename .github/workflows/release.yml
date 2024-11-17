@@ -1,20 +1,36 @@
-name: "publish npm"
+name: Release
 
-on: push
+on:
+    push:
+        branches:
+          - main
+          - next
+
+permissions:
+    contents: write
+    issues: write
+    pull-requests: write
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        steps:
-            - name: checkout
-              uses: actions/checkout@v2
-            - name: node
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 12
-                  registry-url: https://registry.npmjs.org
-            - name: publish
-              run: npm publish --access public
-              working-directory: scrap-to-json
-              env:
-                  NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js  
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+      
+      - name: Publish to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  
+        run: npm publish
