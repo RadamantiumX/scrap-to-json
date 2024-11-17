@@ -1,6 +1,6 @@
 {
-  "name": "@matrix-forge/scrap-to-json",
-  "version": "0.0.1",
+  "name": "@complements/scrap-to-json",
+  "version": "0.0.0-development",
   "description": "Only for complements",
   "main": "dist/index.js",
   "types":"dist/index.d.ts",
