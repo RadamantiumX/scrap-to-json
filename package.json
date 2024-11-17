@@ -1,5 +1,5 @@
 {
-  "name": "@addons/scrap-to-json",
+  "name": "scrap-to-json",
   "version": "0.0.1",
   "description": "Only for complements",
   "main": "index.js",
