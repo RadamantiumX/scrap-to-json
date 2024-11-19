@@ -76,56 +76,7 @@ async getScrapAllElementsInnerHTML() {
 }
 }
 
-async getScrapElementAttr(attr:string){
-    try{
-        const browser =  await puppeteer.launch({
-            headless:false,
-          })
-          const page = await browser.newPage()
-          await page.goto(this.url) 
-          const results = await page.evaluate(()=>{
-            const content = document.querySelector(this.selector)
-            const data = { content:content?.getAttribute(attr) }
-            return data
-          })
-          fs.writeFile(`${this.jsonFileName}.json`,JSON.stringify(results),(err)=>{
-            if(err){
-                console.log(err)
-            }else{
-                console.log('JSON created')
-            }
-        })
-        await browser.close()
 
-    }catch(error){
-        console.log('Something went wrong!',error)
-    }
-}
-async getScrapElementInnerHTML(){
-    try{
-        const browser =  await puppeteer.launch({
-            headless:false,
-          })
-          const page = await browser.newPage()
-          await page.goto(this.url) 
-          const results = await page.evaluate(()=>{
-            const content = document.querySelector(this.selector)
-            const data = { content: content?.innerHTML }
-            return data
-          })
-          fs.writeFile(`${this.jsonFileName}.json`,JSON.stringify(results),(err)=>{
-            if(err){
-                console.log(err)
-            }else{
-                console.log('JSON created')
-            }
-        })
-        await browser.close()
-
-    }catch(error){
-        console.log('Something went wrong!',error)
-    }
-}
 }
 
 export default ScrapToJson
