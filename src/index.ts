@@ -21,7 +21,7 @@ class ScrapToJson {
         
         const content = document.querySelectorAll('.thumb__link')
         const data = [...content].map(con=>{
-            const source = { content: con.getAttribute('src') }
+            const source = { content: con.getAttribute('href') }
             return source
            
         })
