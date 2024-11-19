@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer"
+import fs from 'fs'
 
 export async function getParams() {
     const browser =  await puppeteer.launch({
@@ -19,6 +20,13 @@ export async function getParams() {
         return data
     })
 
-    console.log(results)
+    fs.writeFile('some-json.json',JSON.stringify(results),(err)=>{
+        if(err){
+            console.log(err)
+        }else{
+            console.log('Data scraped')
+        }
+    })
+    await browser.close()
 }
 
