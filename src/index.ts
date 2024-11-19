@@ -11,18 +11,26 @@ import fs from 'fs'
  * @param {string} params.jsonFileName - The name of the JSON file where results will be saved.
  */
 class ScrapToJson {
-     async getScrapAllElementsAttr({url, selector, attr, jsonFileName}:{url:string, selector:string, attr: string, jsonFileName:string}) {
+    url: string;
+    selector: string;
+    jsonFileName: string;
+    constructor(url:string, selector:string, jsonFileName:string){
+        this.url = url;
+        this.selector = selector;
+        this.jsonFileName = jsonFileName;
+    }
+     async getScrapAllElementsAttr(attr:string) {
     try{
     const browser =  await puppeteer.launch({
         headless:false,
       })
       const page = await browser.newPage()
-      await page.goto(url) 
+      await page.goto(this.url) 
       const results = await page.evaluate(()=>{
         
-        const content = document.querySelectorAll(selector)
+        const content = document.querySelectorAll(this.selector)
         const data = [...content].map(con=>{
-            const source = { url: con.getAttribute(attr)}
+            const source = { content: con.getAttribute(attr) }
             return source
            
         })
@@ -31,7 +39,7 @@ class ScrapToJson {
         return data
     })
 
-    fs.writeFile(jsonFileName,JSON.stringify(results),(err)=>{
+    fs.writeFile(`${this.jsonFileName}.json`,JSON.stringify(results),(err)=>{
         if(err){
             console.log(err)
         }else{
@@ -44,18 +52,18 @@ class ScrapToJson {
 }
 }
 
-async getScrapAllElementsInnerHTML({url, selector, jsonFileName}:{url:string, selector:string, jsonFileName:string}) {
+async getScrapAllElementsInnerHTML() {
     try{
     const browser =  await puppeteer.launch({
         headless:false,
       })
       const page = await browser.newPage()
-      await page.goto(url) 
+      await page.goto(this.url) 
       const results = await page.evaluate(()=>{
         
-        const content = document.querySelectorAll(selector)
+        const content = document.querySelectorAll(this.selector)
         const data = [...content].map(con=>{
-            const source = { url: con.innerHTML }
+            const source = { content: con.innerHTML }
             return source
            
         })
@@ -64,7 +72,7 @@ async getScrapAllElementsInnerHTML({url, selector, jsonFileName}:{url:string, se
         return data
     })
 
-    fs.writeFile(jsonFileName,JSON.stringify(results),(err)=>{
+    fs.writeFile(`${this.jsonFileName}.json`,JSON.stringify(results),(err)=>{
         if(err){
             console.log(err)
         }else{
@@ -76,7 +84,58 @@ async getScrapAllElementsInnerHTML({url, selector, jsonFileName}:{url:string, se
     console.log('Something went wrong!',err)
 }
 }
+
+async getScrapElementAttr(attr:string){
+    try{
+        const browser =  await puppeteer.launch({
+            headless:false,
+          })
+          const page = await browser.newPage()
+          await page.goto(this.url) 
+          const results = await page.evaluate(()=>{
+            const content = document.querySelector(this.selector)
+            const data = { content:content?.getAttribute(attr) }
+            return data
+          })
+          fs.writeFile(`${this.jsonFileName}.json`,JSON.stringify(results),(err)=>{
+            if(err){
+                console.log(err)
+            }else{
+                console.log('JSON created')
+            }
+        })
+        await browser.close()
+
+    }catch(error){
+        console.log('Something went wrong!',error)
+    }
+}
+async getScrapElementInnerHTML(){
+    try{
+        const browser =  await puppeteer.launch({
+            headless:false,
+          })
+          const page = await browser.newPage()
+          await page.goto(this.url) 
+          const results = await page.evaluate(()=>{
+            const content = document.querySelector(this.selector)
+            const data = { content: content?.innerHTML }
+            return data
+          })
+          fs.writeFile(`${this.jsonFileName}.json`,JSON.stringify(results),(err)=>{
+            if(err){
+                console.log(err)
+            }else{
+                console.log('JSON created')
+            }
+        })
+        await browser.close()
+
+    }catch(error){
+        console.log('Something went wrong!',error)
+    }
+}
 }
 
-export default new ScrapToJson
+export default ScrapToJson
 
