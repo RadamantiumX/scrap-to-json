@@ -19,7 +19,7 @@ class ScrapToJson {
       await page.goto(this.url) 
       const results = await page.evaluate(()=>{
         
-        const content = document.querySelectorAll(this.selector)
+        const content = document.querySelectorAll('.thumb__link')
         const data = [...content].map(con=>{
             const source = { content: con.getAttribute('src') }
             return source
