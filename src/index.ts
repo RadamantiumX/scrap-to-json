@@ -18,8 +18,8 @@ class ScrapToJson {
       const page = await browser.newPage()
       await page.goto(this.url) 
       const results = await page.evaluate(()=>{
-        
-        const content = document.querySelectorAll('.thumb__link')
+        const propmpter:any = prompt("Inserte the HTML element or class","")
+        const content = document.querySelectorAll(propmpter)
         const data = [...content].map(con=>{
             const source = { content: con.getAttribute('href') }
             return source
