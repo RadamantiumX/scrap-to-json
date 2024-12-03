@@ -1,8 +1,8 @@
 import puppeteer from "puppeteer";
-import fs from "fs";
+import { fileWriter } from "./fileWriter";
 import colors from 'ansi-colors'
 
-export async function loadElements(webUrl:string, element:string, mode: string, jsonFileName: string) {
+export async function loadElements(webUrl:string, element:string, jsonFileName: string,mode: string | null) {
     console.log(colors.bgBlue('Loading...'))
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -21,14 +21,14 @@ export async function loadElements(webUrl:string, element:string, mode: string, 
       for(let i = 0; i < [...elements].length;i++){
        let innerText = [...elements][i]
        let nodeMap = [...elements][i].attributes
-       const attributes:any = {};
+       const extractedData:any = {};
         for(let y = 0; y < nodeMap.length; y++){
              // Extract all attributes into an object
             
-             attributes[nodeMap[y].name] = nodeMap[y].value
-             attributes['inner_html'] = innerText.innerHTML
+             extractedData[nodeMap[y].name] = nodeMap[y].value
+             extractedData['inner_html'] = innerText.innerHTML
         }
-        arrayElement.push(attributes) 
+        arrayElement.push(extractedData) 
       }
       return arrayElement
       }catch(error){
@@ -46,15 +46,15 @@ export async function loadElements(webUrl:string, element:string, mode: string, 
       if (!element) return null;
 
        let nodeMap = element.attributes
-       const attributes:any = {};
+       const extractedData:any = {};
         for(let y = 0; y < nodeMap.length; y++){
              // Extract all attributes into an object
             
-             attributes[nodeMap[y].name] = nodeMap[y].value
-             attributes['inner_html'] = element.innerHTML
+             extractedData[nodeMap[y].name] = nodeMap[y].value
+             extractedData['inner_html'] = element.innerHTML
             
         }
-        arrayElement.push(attributes) 
+        arrayElement.push(extractedData) 
       
       return arrayElement
       }catch(error){
@@ -64,30 +64,20 @@ export async function loadElements(webUrl:string, element:string, mode: string, 
     }, selector);
   }
 
-  if(mode.includes('all')){
+  if(mode?.includes('all')){
     // All data element //
    const all_data_element = await getAllElementsAttributes(element); // Replace 'h1' with the desired selector
    const results_length = all_data_element?.length
- //  console.log({all_data_element,results_length});
-// All data element //
-fs.writeFile(`${jsonFileName}.json`, JSON.stringify({all_data_element,results_length}), err =>{
-  if(err) throw new err
 
-  console.log(colors.bgBlueBright(`${jsonName}.json has been created!`))
- })
+// All data element //
+  fileWriter(jsonFileName, {all_data_element, results_length})
    console.log((colors.bgGreen('Done! 😊')))
   await browser.close();
 }else{
   // Single Element //
   const single_data_element = await getSingleElementAttributes(element);
-  // console.log({single_data_element})
-  fs.writeFile(`${jsonFileName}.json`, JSON.stringify(single_data_element), err =>{
-    if(err) {
-        throw new err
-    }
-
-    console.log(colors.bgBlueBright(`${jsonFileName}.json has been created!`))
-   })
+  
+  fileWriter(jsonFileName, single_data_element)
   console.log((colors.bgGreen('Done! 😊')))
   await browser.close();
   // Single Element //
