@@ -1,6 +1,7 @@
 import readline from 'readline'
 import { loadElements } from './loadElements';
 import colors from 'ansi-colors'
+import { validateFileName } from '../utils/validations';
 
     const rl = readline.createInterface({
         input: process.stdin,
@@ -9,12 +10,18 @@ import colors from 'ansi-colors'
       
       let values:any[] = []; // Array to store the values
 
-export async function consoleReadLine (param = "url", mode: string | null){
+export async function consoleReadLine (param:string | null = "url", mode: string | null){
     try{
         rl.question(colors.cyan(`Enter a ${param}: `), (input) => {
           
           if (values.length >= 2) {
             values.push(input);
+            const validate = validateFileName({file_name: values[2]})
+            if(!validate.success){
+              console.log(colors.bgRed('Wrong file name'))
+              rl.close()
+              return
+            }
             loadElements(values[0], values[1],values[2], mode)
             rl.close();
           } else {
