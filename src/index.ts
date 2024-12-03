@@ -3,7 +3,7 @@ import { consoleReadLine } from "./helpers/consoleReadline";
 class ScrapToJson {
   async getScrapAllElements() {
     try {
-      consoleReadLine(null,'all')
+      consoleReadLine('url','all')
     } catch (err) {
       console.log("Something went wrong!", err);
     }
@@ -11,7 +11,7 @@ class ScrapToJson {
 
   async getScrapSingleElement() {
     try {
-      consoleReadLine(null,'single')
+      consoleReadLine('url','single')
     } catch (err) {
       console.log("Something went wrong!", err);
     }
