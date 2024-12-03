@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import { fileWriter } from "./fileWriter.js";
+import { fileWriter } from "./fileWriter";
 import colors from 'ansi-colors'
 
 export async function loadElements(webUrl:string, element:string, jsonFileName: string,mode: string | null) {
