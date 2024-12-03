@@ -10,7 +10,6 @@
       "moduleResolution": "node",
       "strictPropertyInitialization": false,
       "declaration": true,
-      "emitDeclarationOnly": true,
         "outDir": "./dist",
         "rootDir": "src",
         "baseUrl": ".",
