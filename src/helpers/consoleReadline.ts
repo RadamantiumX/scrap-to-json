@@ -1,7 +1,7 @@
 import readline from 'readline'
 import { loadElements } from './loadElements';
 import colors from 'ansi-colors'
-import { validateFileName } from '../utils/validations';
+import { validateFileName } from '../utils/validations.js';
 
     const rl = readline.createInterface({
         input: process.stdin,
