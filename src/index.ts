@@ -1,12 +1,9 @@
-
+import { consoleReadLine } from "./helpers/consoleReadline";
 
 class ScrapToJson {
-  jsonFileName: string;
-  constructor(jsonFileName: string) {
-    this.jsonFileName = jsonFileName;
-  }
   async getScrapAllElements() {
     try {
+      consoleReadLine(null,'all')
     } catch (err) {
       console.log("Something went wrong!", err);
     }
@@ -14,8 +11,11 @@ class ScrapToJson {
 
   async getScrapSingleElement() {
     try {
+      consoleReadLine(null,'single')
     } catch (err) {
       console.log("Something went wrong!", err);
     }
   }
 }
+
+export default ScrapToJson
