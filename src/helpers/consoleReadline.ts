@@ -10,7 +10,7 @@ import { validateFileName } from '../utils/validations';
       
       let values:any[] = []; // Array to store the values
 
-export async function consoleReadLine (param:string | null = "url", mode: string | null){
+export async function consoleReadLine (param:string, mode: string | null){
     try{
         rl.question(colors.cyan(`Enter a ${param}: `), (input) => {
           
