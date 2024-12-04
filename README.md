@@ -15,7 +15,7 @@ npm i @complements/scrap-to-json
 
 ## *Usage example*
 
-First at all, you must initialize the **ScrapToJson** class, then, select the method for start this library:
+First at all, you must initialize the **ScrapToJson** class, then, select the method for start (*each one for different purposes*):
 
 ```js
 import ScrapToJson from "@complements/scrap-to-json"
@@ -57,6 +57,6 @@ And that's it, the file will be saved on the root folder.
 
 ## Contributions
 
-You may contributing, all the improvement is very welcome. This is only a complement to make more easy the basic scrap. I hope can be useful. 
+You may contributing, all the improvement is very welcome. This is only a complement to make more easy somes tedious jobs. I hope can be useful. 
 
 **Regards!**
