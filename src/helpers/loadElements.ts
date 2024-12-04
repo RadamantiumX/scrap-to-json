@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 import { fileWriter } from "./fileWriter.js";
 import colors from 'ansi-colors'
 
-export async function loadElements(webUrl:string, element:string, jsonFileName: string,mode: string | null) {
+export async function loadElements(webUrl:string, element:string, jsonFileName: string,mode: string) {
     console.log(colors.bgBlue('Loading...'))
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -64,7 +64,7 @@ export async function loadElements(webUrl:string, element:string, jsonFileName: 
     }, selector);
   }
 
-  if(mode?.includes('all')){
+  if(mode.includes('all')){
     // All data element //
    const all_data_element = await getAllElementsAttributes(element); // Replace 'h1' with the desired selector
    const results_length = all_data_element?.length

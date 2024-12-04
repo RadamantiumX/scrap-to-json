@@ -10,7 +10,7 @@ import { validateFileName } from '../utils/validations.js';
       
       let values:any[] = []; // Array to store the values
 
-export async function consoleReadLine (param:string, mode: string | null){
+export async function consoleReadLine (param:string, mode: string){
     try{
         rl.question(colors.cyan(`Enter a ${param}: `), (input) => {
           
@@ -27,9 +27,9 @@ export async function consoleReadLine (param:string, mode: string | null){
           } else {
             values.push(input); // Add input to the array
                 if(values.length <= 1){
-                    consoleReadLine('DOM Element tag (without "<>") or selector', null); // Ask again
+                    consoleReadLine('DOM Element tag (without "<>") or selector', mode); // Ask again
                 }
-                consoleReadLine('File Name (omit *json* extension)', null)
+                consoleReadLine('File Name (omit *json* extension)', mode)
                 
             
           }
