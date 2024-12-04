@@ -26,7 +26,7 @@ export async function consoleReadLine (param:string, mode: string | null){
             rl.close();
           } else {
             values.push(input); // Add input to the array
-                if(values.length < 1){
+                if(values.length <= 1){
                     consoleReadLine('DOM Element tag (without "<>") or selector', null); // Ask again
                 }
                 consoleReadLine('File Name (omit *json* extension)', null)
