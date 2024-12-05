@@ -1,7 +1,7 @@
 import readline from 'readline'
 import { loadElements } from './loadElements.js';
 import colors from 'ansi-colors'
-import { validateFileName } from '../utils/validations.js';
+import { validateUserPromptSchema } from '../utils/validations.js';
 
     const rl = readline.createInterface({
         input: process.stdin,
@@ -16,9 +16,9 @@ export async function consoleReadLine (param:string, mode: string){
           
           if (values.length >= 2) {
             values.push(input);
-            const validate = validateFileName({file_name: values[2]})
+            const validate = validateUserPromptSchema({ url: values[0], element: values[1], file: values[2] }) // Validate user prompt
             if(!validate.success){
-              console.log(colors.bgRed('Wrong file name'))
+              console.log(`Error log: ${colors.bgRed(validate.error.message)}`)
               rl.close()
               return
             }

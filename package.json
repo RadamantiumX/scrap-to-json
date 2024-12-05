@@ -10,9 +10,17 @@
     "build:types": "tsc",
     "build:all": "npm run build && npm run build:types",
     "start": "node dist/index.js",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test": "vitest"
   },
-  "keywords": ["scrap", "json", "node", "puppeteer", "zod", "bash"],
+  "keywords": [
+    "scrap",
+    "json",
+    "node",
+    "puppeteer",
+    "zod",
+    "bash"
+  ],
   "author": "Radamantium",
   "license": "ISC",
   "repository": {
@@ -24,7 +32,8 @@
     "@types/puppeteer": "^7.0.4",
     "esbuild": "^0.24.0",
     "semantic-release": "^24.2.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
   },
   "files": [
     "dist",

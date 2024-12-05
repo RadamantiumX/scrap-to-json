@@ -1,13 +1,17 @@
 import z from 'zod'
 
 type input = {
-    file_name: string
+    url: string,
+    element: string,
+    file: string
 }
 
-const fileSchema = z.object({
-    file_name: z.string().refine((s)=>!s.includes(" "), 'Please do not add spaces')
+const userPromptSchema = z.object({
+    url: z.string().url({message: 'invalid url'}).startsWith('https://', {message: "Must provide secure url -E.g. https://secureweb.com"}),
+    element: z.string(),
+    file: z.string().refine((s)=> !s.includes(" "), 'Wrong file name')
 })
 
-export function validateFileName(input:input) {
-    return fileSchema.safeParse(input)
+export function validateUserPromptSchema(input:input) {
+    return userPromptSchema.safeParse(input)
 }

@@ -1,4 +1,4 @@
-import { consoleReadLine } from "./helpers/consoleReadline.js";
+import { consoleReadLine } from "./lib/consoleReadline.js";
 
 class ScrapToJson {
   async getScrapAllElements() {
