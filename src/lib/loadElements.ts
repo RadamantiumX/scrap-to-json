@@ -2,6 +2,18 @@ import puppeteer from "puppeteer";
 import { fileWriter } from "../service/fileWriter.js";
 import colors from "ansi-colors";
 
+/**
+ * Recibed values from the console and uses puppeteer to start the browser
+ * 
+ * This fn manage inside two more function, for conditional and the @param mode can call execution one of this two.
+ * The results of this page evaluation is sending to `fileWriter()` function to create the JSON file
+ * 
+ * All this params will be validated on function calling
+ * @param webUrl valid web site URL recibed
+ * @param element DOM element or class
+ * @param jsonFileName file name
+ * @param mode default values 'all' OR 'single' - reference - `querySelecterAll()` | `querySelector()`
+ */
 export async function loadElements(
   webUrl: string,
   element: string,
@@ -39,12 +51,12 @@ export async function loadElements(
       }
     }, selector);
   };
-
+ 
   const getSingleElementAttributes = async (selector: string) => {
     return await page.evaluate((sel) => {
       try {
         const arrayElement = [];
-        const element = document.querySelector(sel);
+        const element = document.querySelector(sel); // Select single element
         if (!element) return null;
 
         let nodeMap = element.attributes;
