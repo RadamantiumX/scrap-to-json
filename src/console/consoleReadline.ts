@@ -1,14 +1,14 @@
 import readline from 'readline'
-import { loadElements } from './loadElements.js';
+import { loadElements } from '../lib/loadElements.js';
 import colors from 'ansi-colors'
-import { validateUserPromptSchema } from '../utils/validations.js';
+import { validateUserPromptSchema } from '../zod-validations/validations.js';
 
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
       });
       
-      let values:any[] = []; // Array to store the values
+      let values:string[] = []; // Array to store the values
 
 export async function consoleReadLine (param:string, mode: string){
     try{
