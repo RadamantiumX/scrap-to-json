@@ -19,7 +19,7 @@ export async function loadElements(
   element: string,
   jsonFileName: string,
   mode: string
-) {
+):Promise<void> {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
