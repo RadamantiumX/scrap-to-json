@@ -24,7 +24,7 @@ let values: string[] = []; // Array to store user input values for URL, DOM elem
  * @param {string} mode - The mode of operation ('single' or 'all'), indicating the type of scraping to perform.
  * @throws Will log any unexpected errors to the console.
  */
-export async function consoleReadLine(param: string, mode: string) {
+export async function consoleReadLine(param: string, mode: string):Promise<void> {
   try {
     rl.question(colors.cyan(`Enter a ${param}: `), (input) => {
       if (values.length >= 2) {

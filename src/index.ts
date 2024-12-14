@@ -10,7 +10,7 @@ class ScrapToJson {
    * @param {string} mode - "all" mode means, all elements of DOM
    * @throws Logs an error message if the operation fails.
    */
-  async getScrapAllElements() {
+  async getScrapAllElements():Promise<void> {
     try {
       // Invoke consoleReadLine with parameters for scraping all elements
       consoleReadLine("url", "all");
@@ -27,7 +27,7 @@ class ScrapToJson {
    * @param {string} mode - "single" mode means, single element of DOM
    * @throws Logs an error message if the operation fails.
    */
-  async getScrapSingleElement() {
+  async getScrapSingleElement():Promise<void> {
     try {
       // Invoke consoleReadLine with parameters for scraping a single element
       consoleReadLine("url", "single");

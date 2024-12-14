@@ -5,7 +5,7 @@ import colors from 'ansi-colors'
  * @param fileName alphanumeric file name can be only one character
  * @param toParseData raw data provided from the scraping
  */
-export async function fileWriter(fileName:string, toParseData:any [] | any) {
+export async function fileWriter(fileName:string, toParseData:any [] | any):Promise<void> {
     // first, the data will be parsed to write on named JSON file
     fs.writeFile(`${fileName}.json`, JSON.stringify(toParseData), err =>{
         if(err) {

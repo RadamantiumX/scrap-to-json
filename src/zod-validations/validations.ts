@@ -2,10 +2,10 @@ import z from 'zod'
 /**
  * Type for `zod` schema and validate the user propmpt on console
  */
-type input = {
-    url: string,
-    element: string,
-    file: string
+interface input  {
+    url: string;
+    element: string;
+    file: string;
 }
 
 // Zod schema to valite, with the prompt use values from the console
