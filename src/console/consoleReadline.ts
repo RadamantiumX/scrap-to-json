@@ -23,6 +23,7 @@ let values: string[] = []; // Array to store user input values for URL, DOM elem
  * @param {string} param - A description of the input the user should provide (e.g., 'URL').
  * @param {string} mode - The mode of operation ('single' or 'all'), indicating the type of scraping to perform.
  * @throws Will log any unexpected errors to the console.
+ * @returns Promise<void>
  */
 export async function consoleReadLine(param: string, mode: string):Promise<void> {
   try {
